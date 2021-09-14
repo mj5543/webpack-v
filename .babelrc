@@ -1,0 +1,24 @@
+{
+  "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react"
+  ],
+  "plugins": [
+    "@babel/plugin-transform-runtime",
+    "@babel/plugin-syntax-dynamic-import",
+    // ["transform-remove-console", { "exclude": [ "error"] }],
+    "babel-plugin-styled-components",
+    // "transform-remove-console"
+  ],
+  "env": {
+    "production": {
+      "plugins": [
+        ["transform-remove-console", { "exclude": [ "error", "warn"] }]
+      ]
+    },
+    "development": {
+      "plugins": [
+      ]
+    }
+  }
+}
