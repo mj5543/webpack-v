@@ -1,11 +1,13 @@
 const express = require('express');
+require('dotenv').config({
+  path: './.env.development'
+});
 const app = express();
 const path = require('path');
 const cors = require('cors');
 
 const root = path.resolve(__dirname, 'dist');
-const port = 5000;
-require('dotenv').config();
+const port = process.env.PORT || 5000;
 app.use(cors());
 
 app.use(express.json()); // json 페이로드 구문을 분석한다 (body-parser 기반)
@@ -26,7 +28,7 @@ app.use(adminRouter);
 // // add hot loading middleware
 // const webpackHotMiddleware = require('webpack-hot-middleware')(webpackCompiler);
 // app.use(webpackHotMiddleware);
-
+console.log('process.cwd() dev:: ', process.cwd());
 app.use(express.static(path.join(__dirname, "dist"))); // 정적파일을 제공한다.
 
 

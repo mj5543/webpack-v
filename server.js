@@ -59,7 +59,7 @@ app.set('view engine', 'html');
 app.get('*', (req, res)=> {
   // res.sendFile(path.join(__dirname, "dist", "index.html"));
   res.render('index');
-  res.sendFile(path.join(__dirname, "index.html"));
+  //res.sendFile(path.join(__dirname, "index.html"));
   // res.send(`<script>${runtimeContent}</script>`);
 });
 

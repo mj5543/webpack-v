@@ -1,6 +1,5 @@
 const {merge} = require('webpack-merge');
 const webpack = require('webpack'); 
-const Dotenv = require("dotenv-webpack");
 const common = require('./webpack.common');
 const TerserPlugin = require('terser-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
@@ -83,7 +82,6 @@ module.exports = merge(common, {
         },
       },
       plugins: [
-        // new Dotenv(),
         new webpack.DefinePlugin({
           "process.env": {
             NODE_ENV: JSON.stringify(process.env.NODE_ENV),
