@@ -390,8 +390,6 @@ router.get(api.CATEGOTY_POST_LIST, (req, res) => {
   console.log('params', req.params);
   console.log('query', req.query);
   connection.query("SELECT * FROM posts WHERE group_type = ? ORDER BY id DESC", [req.query.groupType], (err, data) => {
-    console.log('data-', data);
-
     if (err) {
       res.status(500);
       res.render('error', { error: err });
