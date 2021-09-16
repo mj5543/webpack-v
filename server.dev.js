@@ -32,7 +32,7 @@ console.log('process.cwd() dev:: ', process.cwd());
 app.use(express.static(path.join(__dirname, "dist"))); // 정적파일을 제공한다.
 
 
-const staticMiddleWare = express.static("dist");
+//const staticMiddleWare = express.static("dist");
 const config = require("./webpack.dev.js")
 const compiler = webpack(config);
 console.log('config.devServer--', config.devServer);
