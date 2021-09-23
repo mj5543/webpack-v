@@ -5,12 +5,13 @@ import loadable from '@loadable/component';
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import queryString from 'query-string';
-import {BallLoader} from '../components/ui/progress/LoaderSample';
+// import {BallLoader} from '../components/ui/progress/LoaderSample';
+// import LoaderDot from '../components/ui/progress/LoaderDot';
 const PostList = loadable(() => import('../components/posts/PostList'), {
-  fallback: <BallLoader />
+  fallback: <div />
 });
 const PostDetail = loadable(() => import('../components/posts/PostDetail'), {
-  fallback: <BallLoader />
+  fallback: <div />
 });
 
 const Posts = (props) => {

@@ -18,6 +18,7 @@ import moment from 'moment';
 const DraftEditor = loadable(() => import('../lib/editor/DraftEditor'), {
   fallback: <div>loading..</div>
 });
+moment.locale('ko');
 
 const initialState = {
   dataList: [],

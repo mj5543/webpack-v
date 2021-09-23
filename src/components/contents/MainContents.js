@@ -9,6 +9,7 @@ import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import { NavLink } from 'react-router-dom';
+moment.locale('ko');
 
 class MainContents extends Component {
   constructor(props) {

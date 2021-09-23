@@ -3,8 +3,11 @@ import * as userActions from "./modules/users";
 
 const mapStateToProps = state => ({
   logged: state.users.logged,
+  isMasterUser: state.users.isMasterUser,
   userInfo: state.users.userInfo,
-  ipInfo: state.users.ipInfo
+  ipInfo: state.users.ipInfo,
+  provideInfo: state.users.provideInfo,
+  categoryGroups: state.users.categoryGroups,
 });
 
 const mapDispatchToProps = dispatch => {
@@ -23,6 +26,12 @@ const mapDispatchToProps = dispatch => {
     },
     setUserTemp: ({ id, username }) => {
       dispatch(authActions.setUserTemp({ id, username }));
+    },
+    setProvideInfo: (info) => {
+			dispatch({type: 'SET_PROVIDE_USER_CHECK', info})
+    },
+    setCaterotyGroups: (data) => {
+      dispatch(userActions.actionCreators.setCaterotyGroups(data));
     }
   };
 };

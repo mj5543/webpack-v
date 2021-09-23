@@ -11,6 +11,7 @@ import "./css/buttons.css";
 import "./css/contents.css";
 import "./css/inputs.css";
 import "./css/background.css";
+import "./components/ui/progress/cp-spinner.css";
 import NavbarExpandTop from './components/navs/NavbarExpandTop';
 import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
 import AuthContainer from './components/auth/AuthContainer';

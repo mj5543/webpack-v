@@ -56,7 +56,6 @@ const InputContents = (props) => {
 			props.setProvideInfo(params);
 			// dispatch({type: SET_PROVIDE_USER_CHECK, user: res.data.result[0]})
 			console.log('storage.get', storage.get('loggedInfo'))
-			console.log(props.store.getState())
       props.history.push("/");
 		}
 	}

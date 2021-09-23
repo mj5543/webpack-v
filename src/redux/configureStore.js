@@ -4,7 +4,7 @@ import { routerReducer, routerMiddleware } from "react-router-redux";
 import users from "./modules/users";
 import auth from "./modules/auth";
 import { createBrowserHistory } from "history";
-import  { composeWithDevTools } from "redux-devtools-extension";
+import { composeWithDevTools } from "redux-devtools-extension";
 
 const env = process.env.NODE_ENV;
 
@@ -24,7 +24,6 @@ const reducer = combineReducers({
 });
 
 let store;
-
 if (env === "development") {
   store = initialState =>
     createStore(reducer,

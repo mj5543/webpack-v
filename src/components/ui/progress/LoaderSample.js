@@ -1,11 +1,17 @@
 import React from 'react';
 import './spinner.css';
-export const BasicSpinner = () => {
-  return (
-    <div className="spinner-col-sm-2 col-xs-4 text-center">
-      <div className="spinner-loader" />
-    </div>
-  )
+export const BasicSpinner = (props) => {
+  if(props.isShow) {
+    return (
+      <div className="loader-dimmed">
+        <div className="loader-center-position spinner-col-sm-2 col-xs-4 text-center">
+          <div className="spinner-loader" />
+        </div>
+      </div>
+    )
+  } else {
+    return null;
+  }
 }
 export const BallLoader = () => {
   return (
@@ -14,11 +20,25 @@ export const BallLoader = () => {
     </div>
   )
 }
+export const PulseLoader = (props) => {
+  if(props.isShow) {
+    return (
+      <div className="loader-dimmed">
+        <div className="loader-center-position spinner-col-sm-2 col-xs-4 text-center">
+          <div className="pulse-loader" />
+        </div>
+      </div>
+    )
+  } else {
+    return null;
+  }
+}
 export const WobblebarLoader = (props) => {
   if(props.isShow) {
     return (
       <div className="loader-dimmed">
         <div className="loader-center-position spinner-col-sm-2 col-xs-4 text-center">
+          {/* <div class="cp-spinner cp-skeleton" /> */}
           <div className="wobblebar-loader" />
         </div>
       </div>

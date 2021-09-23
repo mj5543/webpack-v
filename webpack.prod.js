@@ -9,6 +9,7 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 // const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const CssnanoPlugin = require('cssnano-webpack-plugin');
 const { GenerateSW, InjectManifest } = require('workbox-webpack-plugin');
+const CompressionPlugin = require("compression-webpack-plugin");
 require('dotenv').config();
 
 module.exports = merge(common, {
@@ -24,20 +25,6 @@ module.exports = merge(common, {
               }]
             }
           }),
-          // new CssMinimizerPlugin(),
-          // new CssMinimizerPlugin({
-          //   test: /\.css$/,
-          //   // CPU 멀티 프로세서 병렬화 옵션 (기본 값: true)
-          //   parallel: os.cpus().length - 1,
-          // }),
-          // new OptimizeCssAssetsPlugin({}),
-          // new OptimizeCssAssetsPlugin({test: /\.css$/}),
-          // new UglifyJsPlugin({
-          //   cache: true,
-          //   parallel: true,
-          //   sourceMap: true // set to true if you want JS source maps
-          // }),
-          // new CssMinimizerPlugin(),
           new TerserPlugin({
             test: /\.m?js(\?.*)?$/i,
             terserOptions: {
@@ -110,6 +97,23 @@ module.exports = merge(common, {
             // public/ and not a SPA route
             new RegExp('/[^/]+\\.[^/]+$'),
           ],
+        }),
+        // new CompressionPlugin(),
+        new CompressionPlugin({
+          // filename(pathData) {
+          //   // The `pathData` argument contains all placeholders - `path`/`name`/`ext`/etc
+          //   // Available properties described above, for the `String` notation
+          //   if (/\.svg$/.test(pathData.filename)) {
+          //     return "assets/svg/[path][base].gz";
+          //   }
+    
+          //   return "assets/js/[path][base].gz";
+          // },
+          algorithm: "gzip",
+          test: /\.js$|\.css$|\.html$|\.svg$/,
+          // test: /\.(js|html)$/,
+          threshold: 10240, // 10kb
+          minRatio: 0.8
         }),
         // new InjectManifest({
         //   swSrc: './dist/service-worker.js',

@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import * as actions from '../../actions';
-import * as authActions from "../../redux/modules/auth";
-import * as userActions from "../../redux/modules/users";
 import { withRouter } from "react-router-dom";
 import InputContents from "../login/InputContents";
+import {mapStateToProps, mapDispatchToProps} from "../../redux/connectMapProps";
 // const InputContents = () => import(/* webpackChunkName: "BaseContainer" */"../login/InputContents")
 
 export class BaseContainer extends Component {
@@ -47,32 +45,6 @@ export class BaseContainer extends Component {
   }
 }
 //*******connect 한 컴포넌트에서 props 로 내려 받을 수 있다.
-const mapStateToProps = state => ({
-  logged: state.users.logged,
-  userInfo: state.users.userInfo,
-  ipInfo: state.users.ipInfo,
-  provideInfo: state.users.provideInfo
-});
-
-const mapDispatchToProps = dispatch => {
-  return {
-    // checkUser: () => {
-    //   dispatch(authActions.checkUser());
-    // },
-    userCheck: (params) => {
-      dispatch(userActions.actionCreators.getProvideUserCheck(params));
-    },
-    setUserInfo: (info) => {
-      dispatch(userActions.actionCreators.setUserInfo(info));
-    },
-    setUserTemp: ({ id, username }) => {
-      dispatch(authActions.setUserTemp({ id, username }));
-    },
-    setProvideInfo: (info) => {
-			dispatch({type: 'SET_PROVIDE_USER_CHECK', info})
-    }
-  };
-};
 
 export default withRouter(
   connect(
@@ -80,25 +52,3 @@ export default withRouter(
     mapDispatchToProps
   )(InputContents)
 );
-// const mapStateToProps = (state) => ({
-//   userInfo: state.userInfo
-// });
-  
-//   /*
-//   액션 생성 함수를 사용하여 액션을 생성하고,
-//   해당 액션을 dispatch하는 함수를 만든 후, 이를 props로 연결
-//   */
-//   const mapDispatchToProps = (dispatch) => ({
-//     setUserTemp: ({ id, username }) => {
-//       dispatch(authActions.setUserTemp({ id, username }));
-//     }
-//     // setUserInfo: (info) => {
-//     //   dispatch(authActions.setColor(info));
-//     // }
-//   });
-// const BaseContainer = connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-//   )(InputContents);
-  
-  // export default BaseContainer;

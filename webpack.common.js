@@ -128,32 +128,28 @@ module.exports = {
   plugins: [
     new webpack.ProgressPlugin(),
     // new CleanWebpackPlugin(),
-    // new webpack.DefinePlugin({
-    //   "process.env": {
-    //     NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-    //     REACT_APP_AWS_REGION: JSON.stringify(process.env.REACT_APP_AWS_REGION),
-    //     REACT_APP_S3_BUCKET_NAME: JSON.stringify(process.env.REACT_APP_S3_BUCKET_NAME),
-    //     REACT_APP_CONTENTS_PASSWORD: JSON.stringify(process.env.REACT_APP_CONTENTS_PASSWORD),
-    //     REACT_APP_FACEBOOK_APP_ID: JSON.stringify(process.env.REACT_APP_FACEBOOK_APP_ID),
-    //     REACT_APP_FACEBOOK_TEST_APP_ID: JSON.stringify(process.env.REACT_APP_FACEBOOK_TEST_APP_ID),
-    //     REACT_APP_GOOGLE_AUTH_CLIENT_ID: JSON.stringify(process.env.REACT_APP_GOOGLE_AUTH_CLIENT_ID),
-    //     REACT_APP_HIDDEN_KEY: JSON.stringify(process.env.REACT_APP_HIDDEN_KEY),
-    //     REACT_APP_AWS_ACCESS_KEY_ID: JSON.stringify(process.env.REACT_APP_AWS_ACCESS_KEY_ID),
-    //     REACT_APP_AWS_SECRET_ACCESS_KEY: JSON.stringify(process.env.REACT_APP_AWS_SECRET_ACCESS_KEY),
-    //   },
-    // }),
     new webpack.EnvironmentPlugin(),
     new HtmlWebPackPlugin({
       template: './public/index.html', // public/index.html 파일을 읽는다.
       filename: 'index.html', // output으로 출력할 파일은 index.html 이다.
       favicon: './public/favicon.ico'
     }),
+    // new HtmlWebPackPlugin({
+    //   filename: "posts.html",
+    //   excludeChunks: ["main"],
+    //   template: path.resolve("public/posts.html"),
+    // }),
+    // new HtmlWebPackPlugin({
+    //   excludeChunks: ["posts"],
+    //   template: path.resolve("public/index.html"),
+    // }),
     new MiniCssExtractPlugin({
       filename: '[name].css',
       chunkFilename: '[name].chunk.css',
       ignoreOrder: true,
     }),
-    new webpack.IgnorePlugin(/^\.\/locale$/, [/moment$/]),
+    // new webpack.IgnorePlugin(/^\.\/locale$/, [/moment$/]),
+    new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /^\.\/ko$/),
     new NodePolyfillPlugin({
       excludeAliases: ["console"]
     }),

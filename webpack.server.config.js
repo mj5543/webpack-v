@@ -12,7 +12,6 @@
    const SERVER_PATH = (argv.mode === 'production') ?
      './server.js' :
      './server.dev.js'
-
    return ({
      entry: {
        server: SERVER_PATH,

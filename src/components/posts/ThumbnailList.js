@@ -13,6 +13,7 @@ import ImageListItemBar from '@material-ui/core/ImageListItemBar';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
+moment.locale('ko');
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -94,7 +95,7 @@ const ImageItemList = (props) => {
   return (
     // <div className={classes.root}>
     <Row xs={2} md={6} className="g-3">
-      {props.imageList.map((data,index) =>
+      {props.imageList && props.imageList.map((data,index) =>
          <Col key={index}>
           <ImageListItem key={data.image} style={{height: '180px', listStyle: 'none'}}>
             <Link to={{pathname:`/posts/detail`, search: `?id=${data.id}&groupType=${data.group_type}`}} className="btn-text-s">

@@ -12,7 +12,7 @@ import { toast } from "react-toastify";
 import CategorySeletctList from './CategorySeletctList';
 import Comments from './Comments';
 import { PostsApi, AxiosConfig as api } from '../../api';
-import {WobblebarLoader} from '../ui/progress/LoaderSample';
+import {BasicSpinner} from '../ui/progress/LoaderSample';
 // import DraftEditor from '../lib/editor/DraftEditor';
 // const ToastUIEditor = React.lazy(() => import('../lib/editor/ToastUIEditor'));
 const ToastUIEditor = loadable(() => import('../lib/editor/ToastUIEditor'), {
@@ -83,7 +83,8 @@ class PostDetail extends Component {
         saveButtonText: '저장',
         actionButtonText: '취소',
         updateBtnEl: updateBtnEl,
-        isDisabledCategoty: false
+        isDisabledCategoty: false,
+        isLoading: false
       })
     }
   }
@@ -292,11 +293,11 @@ class PostDetail extends Component {
   setCurrentGroupType(group) {
     this.setState({groupType: group});
   }
-  render(){
+  getContents() {
     let contentElement;
-    // if(this.state.isLoading) {
-    //   contentElement = <WobblebarLoader />
-    // } else 
+    if(this.state.isLoading) {
+      contentElement = <BasicSpinner />
+    } else 
     if(this.state.mode !== 'read') {
       contentElement = this._editorElement();
     } else {
@@ -311,10 +312,12 @@ class PostDetail extends Component {
           commentCnt={this.state.commentCnt} />
         </div>;
     }
+    return contentElement;
+  }
+  render(){
     return (
       <div>
-        <WobblebarLoader isShow={this.state.isLoading} />
-        {/* <CounterContainer /> */}
+        <BasicSpinner isShow={this.state.isLoading} />
         <div className="clearfix mb-2">
         <CategorySeletctList 
           location={this.props.location} 
@@ -327,10 +330,10 @@ class PostDetail extends Component {
           {this.state.updateBtnEl}
           <button type="button" className="btn btn-dark btn-sm btn-fr ms-1" onClick={this.actionModeChange}>{this.state.actionButtonText}</button>
         </div>
-        {contentElement}
+        {this.getContents()}
         <MyVerticallyCenteredModal
           show={this.state.modalShow}
-          onHide={() => this.setModalShow(false)}
+          // onHide={() => this.setModalShow(false)}
           onHideConfirm={() => this.goList()}
         />
         {/* <div dangerouslySetInnerHTML={ {__html: this.state.content} }></div> */}

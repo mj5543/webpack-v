@@ -14,6 +14,7 @@ const ThumbnailList = loadable(() => import('./ThumbnailList'), {
 const DataTableComponent = loadable(() => import('../lib/dataDisplay/DataTableCompoenet'), {
   fallback: <LoaderDot />
 });
+moment.locale('ko');
 
 const initialState = {
   password: '', // 첫번째 패스워드

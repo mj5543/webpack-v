@@ -12,44 +12,36 @@ import codeSyntaxHighlight from '@toast-ui/editor-plugin-code-syntax-highlight';
 
 class ToastUIEditor extends Component {
 
-  editorRef = React.createRef();
-
   constructor() {
     super();
 
-    this.state = {
-      content: "",
-    };
     this.onChanged = this.onChanged.bind(this);
   }
   componentDidMount() {
     this._setEditorHTML(this.props.editContent);
   }
+
+  editorRef = React.createRef();
+
   _setEditorHTML(html) {
     this.editorRef.current.getInstance().setHTML(html);
   }
   onChanged() {
     this.props.onTemperatureChange({content: `${this.editorRef.current.getInstance().getHTML()}`});
+    this.editorRef.current.getInstance().moveCursorToEnd();
   }
- 
 
   render() {
-
     return (
-
       <>
-
         <Editor
-
           previewStyle="vertical"
-
+          usageStatistics={false}
           height="calc(100vh - 150px)"
-
           initialEditType="wysiwyg"
-
-          placeholder="글쓰기"
-
+          placeholder="내용을 입력해주세요.."
           ref={this.editorRef}
+          // initialValue={this.props.editContent}
           plugins={[[codeSyntaxHighlight, { highlighter: Prism }]]}
           onChange={this.onChanged}
           // hooks={{
@@ -60,12 +52,8 @@ class ToastUIEditor extends Component {
           //   }
           // }}
         />
-
-
       </>
-
     );
-
   }
 
 }

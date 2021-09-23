@@ -1,4 +1,5 @@
 const express = require('express');
+const compression = require('compression');
 const path = require('path');
 const app = express();
 const cors = require('cors');
@@ -13,6 +14,7 @@ const pathRoot = path.join(__dirname)
 // if (process.env.NODE_ENV === "production") {
 //   app.use(express.static(path.join(__dirname, "client/dist")));
 // }
+app.use(compression());
 app.use(express.static(pathRoot));
 // fs.writeFileSync()
 fs.writeFile(path.join(__dirname, 'error.html'), '',function(err){      

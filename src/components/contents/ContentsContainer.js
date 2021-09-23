@@ -6,6 +6,7 @@ import { withRouter } from "react-router-dom";
 import storage from "../lib/storage";
 import {isEmpty} from 'lodash';
 import ContentsDetail from "./ContentsDetail";
+import {mapStateToProps, mapDispatchToProps} from "../../redux/connectMapProps";
 
 export class ContentsContainer extends Component {
   componentDidMount() {
@@ -45,32 +46,32 @@ export class ContentsContainer extends Component {
   }
 }
 //*******connect 한 컴포넌트에서 props 로 내려 받을 수 있다.
-const mapStateToProps = state => ({
-  logged: state.users.logged,
-  userInfo: state.users.userInfo,
-  ipInfo: state.users.ipInfo,
-  provideInfo: state.users.provideInfo
-});
-//dispatch({type: 'reset', payload: initialCount}
-const mapDispatchToProps = dispatch => {
-  return {
-    // checkUser: () => {
-    //   dispatch(authActions.checkUser());
-    // },
-    userCheck: (params) => {
-      dispatch(userActions.actionCreators.getProvideUserCheck(params));
-    },
-    setUserInfo: (info) => {
-      dispatch(userActions.actionCreators.setUserInfo(info));
-    },
-    getIpInfo: (info) => {
-      dispatch(userActions.actionCreators.getIpInfo(info));
-    },
-    setUserTemp: ({ id, username }) => {
-      dispatch(authActions.setUserTemp({ id, username }));
-    }
-  };
-};
+// const mapStateToProps = state => ({
+//   logged: state.users.logged,
+//   userInfo: state.users.userInfo,
+//   ipInfo: state.users.ipInfo,
+//   provideInfo: state.users.provideInfo
+// });
+// //dispatch({type: 'reset', payload: initialCount}
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     // checkUser: () => {
+//     //   dispatch(authActions.checkUser());
+//     // },
+//     userCheck: (params) => {
+//       dispatch(userActions.actionCreators.getProvideUserCheck(params));
+//     },
+//     setUserInfo: (info) => {
+//       dispatch(userActions.actionCreators.setUserInfo(info));
+//     },
+//     getIpInfo: (info) => {
+//       dispatch(userActions.actionCreators.getIpInfo(info));
+//     },
+//     setUserTemp: ({ id, username }) => {
+//       dispatch(authActions.setUserTemp({ id, username }));
+//     }
+//   };
+// };
 
 export default withRouter(
   connect(

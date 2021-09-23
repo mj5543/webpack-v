@@ -40,7 +40,7 @@ const FaceBookLoginBtn = ({ location, history, onFacebookLogin }) =>{
               //   <div className="facebook-icon-sq" style={{width: '30px', height: '30px'}}></div>
               // </button>
               <button className="custom-btn btn-17" style={{width: '100%'}} onClick={renderProps.onClick} disabled={renderProps.disabled}>
-                <span className="wp-100">connection facebook account</span>
+                <span className="wp-100">facebook account</span>
                 <span className="wp-100">
                   <div className="facebook-icon-sq ml-10 btn-fl" style={{width: '30px', height: '30px', marginTop: '5px'}} />
                   <div className="d-inline-block">Facebook</div>
