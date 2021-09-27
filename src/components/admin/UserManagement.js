@@ -6,6 +6,7 @@ import moment from 'moment';
 import {isEmpty} from 'lodash';
 import { toast } from "react-toastify";
 import LoaderDot from '../ui/progress/LoaderDot';
+import FullFeaturedCrudGrid from '../lib/material-ui/DataCrudGrid';
 // import DataTableComponent from '../lib/dataDisplay/DataTableCompoenet';
 const DataTableComponent = loadable(() => import('../lib/dataDisplay/DataTableCompoenet'), {
   fallback: <LoaderDot />
@@ -94,6 +95,24 @@ class UserManagement extends Component {
       </div>
     )
   }
+  async userUpdate(e) {
+    try {
+      console.log('passwordChange--', e);
+      const targetItem = this.state.dataList.find(d => d.id === e.id);
+      console.log('targetItem--', targetItem);
+      const changedPassword = e.password;
+      const cipher = crypto.createCipher('aes192', solt);
+      cipher.update(changedPassword, 'utf8', 'base64'); // javascript는 utf-8 라고 안 씀
+      const output = cipher.final('base64');
+      await axios.post('/api/user-password-change', {email: targetItem.email, password: output, grade: e.grade});
+      toast.success('저장되었습니다.')
+
+    } catch(e) {
+      toast.error('저장실패');
+      console.log(e)
+    }
+
+  }
  
   async passwordChange(e) {
     try {
@@ -113,31 +132,53 @@ class UserManagement extends Component {
     }
 
   }
+  // _getDataColumns() {
+  //   return [
+  //     {
+  //       name: "User Name",
+  //       selector: row => `${row.username}`,
+  //       sortable: true,
+  //       grow: 1,
+  //     },
+  //     {
+  //       name: "패스워드",
+  //       selector: row => row.password,
+  //       sortable: true,
+  //       compact: false,
+  //       grow: 8,
+  //       cell: d => this._passwordForm(d)
+  //     },
+  //     {
+  //       name: "가입일",
+  //       selector: row => row.create_at,
+  //       sortable: true,
+  //       right: false,
+  //       grow: 1,
+  //       format: d => moment(d.create_at).format('YYYY.MM.DD'),
+  //       // cell: d => <span>{moment(d.created_at).format('YYYY.MM.DD')}</span>,
+  //     }
+  //   ]
+  // }
   _getDataColumns() {
     return [
+      { field: 'id', headerName: 'Id', type: 'number' },
+      { field: 'username', headerName: 'User Name', width: 150, editable: true },
+      { field: 'password', headerName: 'Password', width: 150, editable: true },
+      { field: 'grade', headerName: 'Grade', width: 120, editable: true },
+      { field: 'provided_app', headerName: 'Provided', width: 120, editable: true },
       {
-        name: "User Name",
-        selector: row => `${row.username}`,
-        sortable: true,
-        grow: 1,
+        field: 'create_at',
+        headerName: 'Date Created',
+        type: 'date',
+        width: 120,
       },
       {
-        name: "패스워드",
-        selector: row => row.password,
-        sortable: true,
-        compact: false,
-        grow: 8,
-        cell: d => this._passwordForm(d)
+        field: 'logout_at',
+        headerName: 'Last Login',
+        type: 'dateTime',
+        width: 200,
+        editable: true,
       },
-      {
-        name: "가입일",
-        selector: row => row.create_at,
-        sortable: true,
-        right: false,
-        grow: 1,
-        format: d => moment(d.create_at).format('YYYY.MM.DD'),
-        // cell: d => <span>{moment(d.created_at).format('YYYY.MM.DD')}</span>,
-      }
     ]
   }
   _getPassword(pass) {
@@ -153,6 +194,8 @@ class UserManagement extends Component {
     console.log('users  _getList--', res);
     const tempList = res.data.result.map(d => {
       d.password = this._getPassword(d.password);
+      d.create_at = new Date(d.create_at)
+      d.logout_at = new Date(d.logout_at)
       return d;
     })
     this.setState({
@@ -172,12 +215,18 @@ class UserManagement extends Component {
     //   isLoading={this.state.isLoading} 
     //   isSelectable={true} 
     //   onSelectedChagenItemCB={this.setEditableItem} />
-    // })
-    return <DataTableComponent columns={this.state.columns} 
+    // // })
+    // return <DataTableComponent columns={this.state.columns} 
+    // dataList={this.state.dataList} 
+    // isLoading={this.state.isLoading} 
+    // isSelectable={true} 
+    // onSelectedChagenItemCB={this.setEditableItem} />
+
+    return <FullFeaturedCrudGrid columns={this.state.columns} 
     dataList={this.state.dataList} 
-    isLoading={this.state.isLoading} 
-    isSelectable={true} 
-    onSelectedChagenItemCB={this.setEditableItem} />
+    isLoading={this.state.isLoading}
+    onSelectedChagenItemCB={(d) => this.userUpdate(d)}
+    />
   }
   setEditableItem(item) {
     this.setState({

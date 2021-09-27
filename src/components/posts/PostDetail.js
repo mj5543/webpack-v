@@ -295,9 +295,9 @@ class PostDetail extends Component {
   }
   getContents() {
     let contentElement;
-    if(this.state.isLoading) {
-      contentElement = <BasicSpinner />
-    } else 
+    // if(this.state.isLoading) {
+    //   contentElement = <BasicSpinner />
+    // } else 
     if(this.state.mode !== 'read') {
       contentElement = this._editorElement();
     } else {

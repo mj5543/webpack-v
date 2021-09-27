@@ -15,7 +15,7 @@ class MainContents extends Component {
   constructor(props) {
     console.log('MainContents props--', props);
     super(props);
-    this.state  = {
+    this.state = {
       password: '', // 첫번째 패스워드
       rePassword: '', // 두번째 패스워드
       pMessage:'패스워드를 입력하세요.', // 확인 메시지 (패스워드 일치여부를 사용자에게 알려주는 메시지)
@@ -127,7 +127,7 @@ class MainContents extends Component {
   }
   goDetail = (data) => {
     if(this.props) {
-      this.props.props.props.history.push({pathname:`/posts/detail`, search: `?id=${data.id}&groupType=${data.group_type}`});
+      this.props.history.push({pathname:`/posts/detail`, search: `?id=${data.id}&groupType=${data.group_type}`});
     }
   }
 

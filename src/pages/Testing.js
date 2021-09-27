@@ -6,6 +6,7 @@ import InputContents from '../components/login/InputContents';
 import Emoji from '../components/ui/emoji/Emoji';
 import LoaderSample from '../components/ui/progress/LoaderSample';
 import LoaderSample2 from '../components/ui/progress/LoaderSample2';
+import MaterialTable from '../components/lib/material-ui/MaterialTable';
 const UserManagement = loadable(() => import('../components/admin/UserManagement'), {
   fallback: <div>loading..</div>
 });
@@ -24,6 +25,7 @@ const Testing = (props) => {
   return (
     <div className="container">
       <UserManagement {...props} />
+			{/* <MaterialTable /> */}
       <ButtonSamples />
 			<LoaderSample />
 			<LoaderSample2 />

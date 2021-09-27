@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import SimpleBar from "simplebar";
 import Particle from '../animation/Particle';
-// import CoffeeMachine from '../animation/CoffeeMachine';
-import * as _ from 'lodash';
+import CoffeeMachine from '../animation/CoffeeMachine';
+import {groupBy, uniqBy} from 'lodash';
 function MenuPostCategory(props) {
   const {headerInfo, menuInfo, isMasterUser} = props;
   if(!isMasterUser && (menuInfo.use_yn === 'N' || headerInfo.use_yn === 'N')) {
@@ -153,8 +153,8 @@ class NavSidebar extends Component {
   async _getCategory () {
     try {
       const res = await axios.get(`/api/category-all`);
-      const groups = _.groupBy(res.data.result, 'depth');
-      const uniqLen = _.uniqBy(res.data.result, 'depth').length;
+      const groups = groupBy(res.data.result, 'depth');
+      const uniqLen = uniqBy(res.data.result, 'depth').length;
       let depth0 = [];
       let depth1 = [];
       let depth2 = [];

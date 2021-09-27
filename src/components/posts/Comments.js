@@ -224,10 +224,12 @@ class Comments extends Component {
             </div>
           )}
           <div className="card box-shadow-02">
+            {this.props.userInfo.username &&
             <div style={{padding: '10px 10px 0px 10px'}}>
               <img src={this.props.userInfo.app_image_url} width="26" height="26" className="rounded-circle me-2" alt="" />
               {this.props.userInfo.username}
             </div>
+            }
             <div className="content-s">
               {this.state.isShowEditor &&
                 <DraftEditor
@@ -258,7 +260,7 @@ const HtmlContent = (props) => {
 const UpdateBtns = (props) => {
   let cotent = '';
   if(props.item.writer_id === props.userInfo.id || props.userInfo.grade === 'MASTER') {
-    cotent =  <div>
+    cotent = <div>
     <IconButton aria-label="update" size="small" data-param={props.item.id} onClick={() => props.onEdit(props.item)}>
       <EditIcon />
     </IconButton>

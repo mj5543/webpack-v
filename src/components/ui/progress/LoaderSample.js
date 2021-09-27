@@ -1,5 +1,4 @@
 import React from 'react';
-import './spinner.css';
 export const BasicSpinner = (props) => {
   if(props.isShow) {
     return (
@@ -40,6 +39,19 @@ export const WobblebarLoader = (props) => {
         <div className="loader-center-position spinner-col-sm-2 col-xs-4 text-center">
           {/* <div class="cp-spinner cp-skeleton" /> */}
           <div className="wobblebar-loader" />
+        </div>
+      </div>
+    )
+  } else {
+    return null;
+  }
+}
+export const RefreshingLoader = (props) => {
+  if(props.isShow) {
+    return (
+      <div className="loader-dimmed">
+        <div className="loader-center-position spinner-col-sm-2 col-xs-4 text-center">
+          <div className="refreshing-loader" />
         </div>
       </div>
     )
