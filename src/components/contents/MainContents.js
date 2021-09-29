@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Route, Link } from 'react-router-dom';
-import Nav from 'react-bootstrap/Nav';
+import { Link } from 'react-router-dom';
+// import Nav from 'react-bootstrap/Nav';
 import moment from 'moment';
 import {isEmpty} from 'lodash';
 import 'bootstrap/dist/css/bootstrap.css';
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import { NavLink } from 'react-router-dom';
+// import { NavLink } from 'react-router-dom';
 moment.locale('ko');
 
 class MainContents extends Component {
@@ -29,7 +29,7 @@ class MainContents extends Component {
       groupType: '',
       columns: []
 
-    };  // 초기 state값을 셋팅해준다. 빈 스트링 값은 false를 뜻한다.
+    }; // 초기 state값을 셋팅해준다. 빈 스트링 값은 false를 뜻한다.
   this.goDetail = this.goDetail.bind(this)
   }
   componentDidMount() {
@@ -143,7 +143,7 @@ class MainContents extends Component {
                 </Card.Header>
                 <Card.Body>
                   <Card.Text>
-                  <div style={{textOverflow: 'ellipsis'}} dangerouslySetInnerHTML={ {__html: data.preContent} }></div>
+                  <div style={{textOverflow: 'ellipsis'}} dangerouslySetInnerHTML={ {__html: data.preContent} }/>
                   </Card.Text>
                 </Card.Body>
                 <div style={{padding: '10px'}}>

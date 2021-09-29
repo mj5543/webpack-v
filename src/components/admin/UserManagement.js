@@ -6,9 +6,12 @@ import moment from 'moment';
 import {isEmpty} from 'lodash';
 import { toast } from "react-toastify";
 import LoaderDot from '../ui/progress/LoaderDot';
-import FullFeaturedCrudGrid from '../lib/material-ui/DataCrudGrid';
+// import FullFeaturedCrudGrid from '../lib/material-ui/DataCrudGrid';
 // import DataTableComponent from '../lib/dataDisplay/DataTableCompoenet';
 const DataTableComponent = loadable(() => import('../lib/dataDisplay/DataTableCompoenet'), {
+  fallback: <LoaderDot />
+});
+const FullFeaturedCrudGrid = loadable(() => import('../lib/material-ui/DataCrudGrid'), {
   fallback: <LoaderDot />
 });
 require('dotenv').config();
