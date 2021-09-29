@@ -13,14 +13,14 @@ if (process.env.NODE_ENV === "production") {
     // connectTimeout  : 60 * 60 * 1000,
     // acquireTimeout  : 60 * 60 * 1000,
     // timeout         : 60 * 60 * 1000,
-    // host : process.env.AWS_DATABASE_HOST,
-    // user : process.env.AWS_DATABASE_USER,
-    // password : process.env.AWS_DATABASE_PASSWORD,
-    // database : process.env.AWS_DATABASE
-    host : process.env.LOCAL_DATABASE_HOST,
-    user : process.env.LOCAL_DATABASE_USER,
-    password : process.env.LOCAL_DATABASE_PASSWORD,
-    database : process.env.LOCAL_DATABASE
+    host : process.env.AWS_DATABASE_HOST,
+    user : process.env.AWS_DATABASE_USER,
+    password : process.env.AWS_DATABASE_PASSWORD,
+    database : process.env.AWS_DATABASE
+    // host : process.env.LOCAL_DATABASE_HOST,
+    // user : process.env.LOCAL_DATABASE_USER,
+    // password : process.env.LOCAL_DATABASE_PASSWORD,
+    // database : process.env.LOCAL_DATABASE
   });
 
 } else {
