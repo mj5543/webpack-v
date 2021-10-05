@@ -89,6 +89,40 @@ router.post('/api/user-password-change', function(request, response) {
   //     });
   //   });
 });
+router.post('/api/user-update', function(request, response) {
+  console.log('request.body', request.body);
+  console.log('rresponse', response);
+  const userpassword = request.body.password;
+  const email = request.body.email;
+  const grade = request.body.grade;
+  const params = [userpassword, userpassword, grade, email];
+  connection.query('UPDATE users SET password = ?, password_s = ?, grade = ? WHERE email = ?', params,
+  function(error, results, fields) {
+    if (error) {
+      response.status(500);
+      response.render('error', { error: error });
+    } else {
+      response.send({ result : results });
+    }
+  });
+
+  // crypto.randomBytes(64, (err, buf) => {
+  //     const salt = buf.toString('base64');
+  //     console.log('salt :: ', salt);
+  //     crypto.pbkdf2(userpassword, salt, 1203947, 64, 'sha512', (err, key) => {
+  //         console.log('password :: ', key.toString('base64')); // 'dWhPkH6c4X1Y71A/DrAHhML3DyKQdEkUOIaSmYCI7xZkD5bLZhPF0dOSs2YZA/Y4B8XNfWd3DHIqR5234RtHzw=='
+  //         connection.query('UPDATE users SET password = ?, password_s = ? WHERE email = ?', [key.toString('base64'), salt, email],
+  //         function(error, results, fields) {
+  //           if (error) {
+  //             response.status(500);
+  //             response.render('error', { error: err });
+  //           } else {
+  //             response.send({ result : results });
+  //           }
+  //         });
+  //     });
+  //   });
+});
 router.post('/api/updateLoggedinUser', function(request, response) {
   // const {name, password, email, appId, provider} = request.body;
   const email = request.body.email;

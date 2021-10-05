@@ -6,6 +6,7 @@ import moment from 'moment';
 import {isEmpty} from 'lodash';
 import { toast } from "react-toastify";
 import LoaderDot from '../ui/progress/LoaderDot';
+import { TooltipB } from '../lib/material-ui/Tooltip';
 // import FullFeaturedCrudGrid from '../lib/material-ui/DataCrudGrid';
 // import DataTableComponent from '../lib/dataDisplay/DataTableCompoenet';
 const DataTableComponent = loadable(() => import('../lib/dataDisplay/DataTableCompoenet'), {
@@ -107,7 +108,7 @@ class UserManagement extends Component {
       const cipher = crypto.createCipher('aes192', solt);
       cipher.update(changedPassword, 'utf8', 'base64'); // javascript는 utf-8 라고 안 씀
       const output = cipher.final('base64');
-      await axios.post('/api/user-password-change', {email: targetItem.email, password: output, grade: e.grade});
+      await axios.post('/api/user-update', {email: targetItem.email, password: output, grade: e.grade});
       toast.success('저장되었습니다.')
 
     } catch(e) {
@@ -164,9 +165,16 @@ class UserManagement extends Component {
   // }
   _getDataColumns() {
     return [
-      { field: 'id', headerName: 'Id', type: 'number' },
+      { field: 'id', headerName: 'Id', type: 'number', width: 50, },
       { field: 'username', headerName: 'User Name', width: 150, editable: true },
-      { field: 'password', headerName: 'Password', width: 150, editable: true },
+      { field: 'email', headerName: 'Email', width: 150, editable: true,
+        renderCell: (params) => (
+          <TooltipB title={params.row.email} >
+          <span className="table-cell-trucate">{params.row.email}</span>
+          </TooltipB>
+        ),
+      },
+      { field: 'password', headerName: 'Password', width: 130, editable: true },
       { field: 'grade', headerName: 'Grade', width: 120, editable: true },
       { field: 'provided_app', headerName: 'Provided', width: 120, editable: true },
       {

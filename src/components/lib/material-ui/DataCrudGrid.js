@@ -1,5 +1,5 @@
 import React, {useCallback, useState} from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import EditIcon from '@material-ui/icons/Edit';
@@ -8,13 +8,10 @@ import SaveIcon from '@material-ui/icons/Save';
 import CancelIcon from '@material-ui/icons/Close';
 import IconButton from '@material-ui/core/IconButton';
 import {
-  useGridApiRef,
   DataGrid,
   GridToolbarContainer,
   GridToolbar,
   useGridSlotComponentProps,
-  GridEditRowApi
-  // GridActionsCellItem
 } from '@mui/x-data-grid';
 import { createTheme, makeStyles } from '@material-ui/core/styles';
 import {RefreshingLoader} from '../../ui/progress/LoaderSample';
