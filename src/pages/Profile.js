@@ -1,7 +1,10 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import UserCheck from '../components/login/UserCheck';
 import ActivityContents from '../components/contents/ActivityContents';
 const Profile = (props) => {
+  useEffect(() => {
+    document.title = `Minju's Blog - Profile`
+  }, []);
   return (
     <main className="content">
     <UserCheck />
@@ -71,7 +74,7 @@ const Profile = (props) => {
             </div> */}
           </div>
         </div>
-              <ActivityContents history={props.history} />
+            <ActivityContents {...props} />
         
       </div>
 

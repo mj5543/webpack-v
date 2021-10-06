@@ -40,7 +40,7 @@ class MainContents extends Component {
     //   groupType: this.props.groupType,
     //   columns: this._getDataColumns()
     // });
-
+    document.title = `Minju's blog`;
     this._getDataList();
     // this._getList();
   }
@@ -135,8 +135,8 @@ class MainContents extends Component {
     return (
       <div style={{padding: '30px'}}>
        <Row xs={2} md={3} className="g-1">
-         {this.state.dataList.map((data,index) =>
-              <Col key={index}>
+         {this.state.dataList && this.state.dataList.map((data,index) =>
+            <Col key={index}>
               <Card style={{minHeight:'250px', fontFamily: 'GothicL'}}>
                 <Card.Header>
                   <Card.Title>{data.subject}</Card.Title>
@@ -153,8 +153,7 @@ class MainContents extends Component {
                 </div>
               </Card>
             </Col>
-         )
-
+          )
          }
           {/* {Array.from({ length: 12 }).map((_, idx) => (
             <Col>

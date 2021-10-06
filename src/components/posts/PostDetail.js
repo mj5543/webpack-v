@@ -103,6 +103,7 @@ class PostDetail extends Component {
         updateBtnEl = <button type="button" className="btn btn-dark btn-sm btn-fr ms-1" onClick={this.modeChange}>{this.state.saveButtonText}</button>;
         deleteBtnEl = <button type="button" className="btn btn-dark btn-sm btn-fr ms-1" onClick={this.deletePost}>삭제</button>;
       }
+      document.title = res[0].subject;
       this.setState({
         title: res[0].subject,
         content: res[0].content,

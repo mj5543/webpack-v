@@ -40,6 +40,7 @@ class PostList extends Component {
     this.state = initialState;
   }
   componentDidMount() {
+    document.title = `Minju's Blog - ${this.props.groupType}`
     this.setState({
       groupType: this.props.groupType,
       isLoading: true,
@@ -52,6 +53,7 @@ class PostList extends Component {
   }
   componentDidUpdate() {
     if(this.state.groupType !== this.props.groupType) {
+      document.title = `Minju's Blog - ${this.props.groupType}`
       this.setState({
         groupType: this.props.groupType,
         isLoading: true,
