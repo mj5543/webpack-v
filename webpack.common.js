@@ -113,6 +113,15 @@ module.exports = {
         test: /\.svg$/i,
         use: ['@svgr/webpack'],
       },
+      {
+        test: /\.xml$/,
+        use: {
+          loader: 'xml-loader',
+          options: {
+            explicitArray: false,
+          },
+        },
+      },
     ]
   },
   // externals: {

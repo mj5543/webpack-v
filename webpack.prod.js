@@ -1,3 +1,4 @@
+const path = require("path");
 const {merge} = require('webpack-merge');
 const webpack = require('webpack'); 
 const common = require('./webpack.common');
@@ -10,6 +11,14 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const CssnanoPlugin = require('cssnano-webpack-plugin');
 const { GenerateSW, InjectManifest } = require('workbox-webpack-plugin');
 const CompressionPlugin = require("compression-webpack-plugin");
+const XMLWebpackPlugin = require('xml-webpack-plugin');
+const xmlFiles = [
+  {
+      template: './public/sitemap.xml',
+      filename: 'sitemap.xml',
+  }
+]
+
 require('dotenv').config();
 
 module.exports = merge(common, {
@@ -124,6 +133,9 @@ module.exports = merge(common, {
           analyzerMode: "static",
           openAnalyzer: true 
         }),
+        new XMLWebpackPlugin({
+          files: xmlFiles
+      })
     ],
       
 })

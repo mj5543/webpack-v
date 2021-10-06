@@ -39,6 +39,12 @@ app.get("/api/fileconfig", (req, res) => {
   }
   res.send(config);
 });
+app.get('/sitemap.xml', (req, res)=> {
+  res.sendFile(path.join(__dirname, "dist", "sitemap.xml"));
+  // res.sendFile(path.join("public", "sitemap.xml"));
+  //res.sendFile(path.join(__dirname, "index.html"));
+  // res.send(`<script>${runtimeContent}</script>`);
+});
 
 app.use(userRouter);
 app.use(postsRouter);
@@ -53,14 +59,14 @@ app.use(adminRouter);
 // });
 console.log('__dirname:: ', __dirname);
 console.log('process.cwd():: ', process.cwd());
-app.set('views', pathRoot); // ejs engine looks for ejs files in public folder
-app.engine('html', require('ejs').renderFile)
-app.set('view engine', 'html');
+// app.set('views', pathRoot); // ejs engine looks for ejs files in public folder
+// app.engine('html', require('ejs').renderFile)
+// app.set('view engine', 'html');
 
 
 app.get('*', (req, res)=> {
-  // res.sendFile(path.join(__dirname, "dist", "index.html"));
-  res.render('index');
+  res.sendFile(path.join(__dirname, "dist", "index.html"));
+  // res.render('index');
   //res.sendFile(path.join(__dirname, "index.html"));
   // res.send(`<script>${runtimeContent}</script>`);
 });
